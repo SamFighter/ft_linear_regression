@@ -1,4 +1,5 @@
 import csv, json
+from pathlib import Path
 
 kms = []
 prices = []
@@ -6,7 +7,9 @@ theta0 = 0.0
 theta1 = 0.0
 learning_rate = 0.1
 
-with open("../data/data.csv") as file:
+here = Path(__file__).resolve().parent
+pathfile = here.parent / "data/data.csv"
+with open(pathfile) as file:
     reader = csv.DictReader(file)
     for line in reader:
         kms.append(float(line["km"]))
@@ -33,10 +36,8 @@ for i in range(100000):
     theta0 = theta0 - tmp_theta0
     theta1 = theta1 - tmp_theta1
 config = {"theta0": theta0, "theta1": theta1, "km_min": km_min, "km_max": km_max}
-with open("../model.json", "w") as f:
+model_path = here.parent / "model.json"
+with open(model_path, "w") as f:
     json.dump(config, f)
 
-print(i)
-print("theta0 =", theta0)
-print("theta1 =", theta1)
-print("mean error =", mean_error(kms_norm, prices, theta0, theta1), "\n")
+print("Linear regression model complete.")
