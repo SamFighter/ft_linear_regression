@@ -35,6 +35,7 @@ for i in range(100000):
         break
     theta0 = theta0 - tmp_theta0
     theta1 = theta1 - tmp_theta1
+    
 config = {"theta0": theta0, "theta1": theta1, "km_min": km_min, "km_max": km_max}
 model_path = here.parent / "model.json"
 with open(model_path, "w") as f:
