@@ -30,7 +30,7 @@ km_max = config.get("km_max")
 if km > km_max and loaded == True:
     print("Value out of range of data.\n", file=sys.stderr)
     sys.exit(1)
-    
+
 theta0 = config.get("theta0")
 theta1 = config.get("theta1")
 km_norm = (km - km_min) / (km_max - km_min)
